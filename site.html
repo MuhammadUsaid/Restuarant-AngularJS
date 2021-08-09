@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="myApp">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Usaid Restuarant</title>
+    <link href="content/css/styles.css" rel="stylesheet" type="text/css" />
+    <script src="app\lib\angular.min.js"></script>
+    <script src="app\app2.js"></script>
+</head>
+<body>
+    <ng-include src="'header.html'"></ng-include>
+    <div class="content">
+        <div ng-controller = "MyController">
+            <button ng-click="order = 'price'">Order By Price</button>
+            <button ng-click="order = 'item'">Order By Name</button>
+            <input type="text" ng-model="search" placeholder="search for food" />
+            <ul>
+                <li ng-repeat="i in menu | orderBy: order | filter: search">
+                    {{i.item}} - {{i.price}} Pkr
+                    <div class="remove" ng-click="removeItem(i)">X</div>
+                </li>
+            </ul>
+            <form ng-submit="addItem()">
+                <input type="text" placeholder="Item" ng-model="newItem.name" />
+                <input type="text" placeholder="Price" ng-model="newItem.price" />
+                <input type="submit" value="Add Item" />
+            </form>
+        </div>
+    </div>
+</body>
+</html>
